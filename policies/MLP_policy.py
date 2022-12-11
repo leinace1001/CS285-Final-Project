@@ -123,6 +123,7 @@ class MLPPolicy(BasePolicy, nn.Module, metaclass=abc.ABCMeta):
     # return more flexible objects, such as a
     # `torch.distributions.Distribution` object. It's up to you!
     def forward(self, images: torch.FloatTensor):
+        images[:,21:29,28:36,:]=0
         images=images.permute(0,3,1,2)
         observation=self.observation_net(images)
         if self.discrete:
